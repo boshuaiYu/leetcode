@@ -118,6 +118,10 @@ class ListNode:
   * 虚拟头节点的定义要保证与head连接，即dummy_node.next = head
   * 操作指针移动时不能随便移动头指针，否则会造成头指针值发生改变，要使用临时指针cur来进行操作
   * 删除元素的是cur.next，因此要是cur指向删除Node的前一个位置，因此cur起始从dummy_node开始
-  * 返回的是新链表的头节点，而经过改变后原来的头节点head可能会发生改变，但新链表的dummy_node始终指向的是头节点，即dummy_node.next
+  * 返回的是新链表的头节点，而经过改变后原来的头节点head可能会发生改变，但新链表的dummy_node始终指向的是头节点，即dummy_node.next</font>
+  
+  参考文档资料:https://programmercarl.com/0206.%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.html 
+
+  参考视频：https://www.bilibili.com/video/BV18B4y1s7R9
 * [leetcode206](https://leetcode.cn/problems/reverse-linked-list/)翻转链表
 ---
