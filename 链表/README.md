@@ -89,7 +89,35 @@ class ListNode:
            cur.next = cur.next.next
            self.size -= 1
    ```
+  <font color="orange">判断初始起点就看极端情况，比如获取0个节点的值,那么get函数的while循环不生效，直接返回指针对应的值，所以cur=self.head.next</font>
   参考文档资料：https://programmercarl.com/0707.%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8.html
 
   参考视频：https://www.bilibili.com/video/BV1FU4y1X7WD/
-* [leetcode203](https://leetcode.cn/problems/remove-linked-list-elements/)移除链表元素:
+* [leetcode203](https://leetcode.cn/problems/remove-linked-list-elements/)移除链表元素:主要通过两种方式进行操作：使用原来的链表进行删除操作；设置一个虚拟头节点的方式进行操作
+
+  对于使用原链表进行删除操作，需判断删除的节点是否为头节点，而头节点与非头节点的删除方式不同，比较麻烦，具体实现参考"./leetcode203.py"
+![img_1.png](img_1.png)
+  以下采用虚拟头节点方式：
+  ```
+  # class ListNode:
+  #     def __init__(self, val=0, next=None):
+  #         self.val = val
+  #         self.next = next
+  class Solution:
+      def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+        dummy_node = ListNode(next=head)  # 定义一个初始虚拟头节点,使其连接在head之前
+        cur = dummy_node  # 定义临时指针指向虚拟头节点
+        while cur.next:  # 找到要删除的值是cur.next
+          if cur.next.val == val:
+            cur.next = cur.next.next
+          else:
+            cur = cur.next
+        return dummy_node.next   # 返回的是新链表的头节点，也是虚拟头节点dummy_node的下一个节点
+  ```
+  <font color ="LightPink">本题的关键点有以下几个方面：
+  * 虚拟头节点的定义要保证与head连接，即dummy_node.next = head
+  * 操作指针移动时不能随便移动头指针，否则会造成头指针值发生改变，要使用临时指针cur来进行操作
+  * 删除元素的是cur.next，因此要是cur指向删除Node的前一个位置，因此cur起始从dummy_node开始
+  * 返回的是新链表的头节点，而经过改变后原来的头节点head可能会发生改变，但新链表的dummy_node始终指向的是头节点，即dummy_node.next
+* [leetcode206](https://leetcode.cn/problems/reverse-linked-list/)翻转链表
+---
