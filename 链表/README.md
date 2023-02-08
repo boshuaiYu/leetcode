@@ -123,5 +123,31 @@ class ListNode:
   参考文档资料:https://programmercarl.com/0206.%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.html 
 
   参考视频：https://www.bilibili.com/video/BV18B4y1s7R9
-* [leetcode206](https://leetcode.cn/problems/reverse-linked-list/)翻转链表
+* [leetcode206](https://leetcode.cn/problems/reverse-linked-list/)翻转链表主要通过改变链表的next指针的指向，直接将链表翻转，而无需定义一个新的链表
+![img_2.png](img_2.png)
+
+  参考动画：https://code-thinking.cdn.bcebos.com/gifs/206.%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.gif
+  
+  本题基础解法是双指针法，<font color ="orange">递归法也是通过双指针法进行改写</font>,以下主要展示双指针法:(递归法参考”./leetcode206.py")
+  ```
+  # Definition for singly-linked list.
+  # class ListNode:
+  #     def __init__(self, val=0, next=None):
+  #         self.val = val
+  #         self.next = next
+  class Solution:
+      def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        cur, pre = head, None  # 初始化指针
+        while cur:  # 循环终止时是当pre指向原链表最后一个Node时，cur指向None，此时循环结束
+          temp = cur.next  # 在cur的next指针改变之前先进行保存
+          cur.next = pre  # 将cur的next指针指向pre
+          pre = cur   #  pre向前移动一位，即pre与cur进行互换
+          cur = temp  # cur位置更新，永远是pre的下一位
+        return pre
+  ```
+  参考文档资料：https://programmercarl.com/0206.%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.html 
+
+  参考视频：https://www.bilibili.com/video/BV1nB4y1i7eL/?vd_source=1ea4618b60783ecde5702f73958bbca9
 ---
+## Day4 
+* [leetcode24](https://leetcode.cn/problems/swap-nodes-in-pairs/)两两交换链表中的节点
