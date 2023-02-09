@@ -150,4 +150,140 @@ class ListNode:
   参考视频：https://www.bilibili.com/video/BV1nB4y1i7eL/?vd_source=1ea4618b60783ecde5702f73958bbca9
 ---
 ## Day4 
-* [leetcode24](https://leetcode.cn/problems/swap-nodes-in-pairs/)两两交换链表中的节点
+* [leetcode24](https://leetcode.cn/problems/swap-nodes-in-pairs/)两两交换链表中的节点，<font color ="LightPink">关键点在于：循环终止条件的先后顺序；以及改变链表顺序的连接顺序，先连接再改链</font>
+  
+  参考顺序：![img_3.png](img_3.png)
+  ```
+  # Definition for singly-linked list.
+  # class ListNode:
+  #     def __init__(self, val=0, next=None):
+  #         self.val = val
+  #         self.next = next
+  class Solution:
+      def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy_head = ListNode(next=head)  # 创建一个虚拟头节点
+        pre = dummy_head  # 将指针指向虚拟头节点位置
+        while pre.next and pre.next.next:  # 循环终止条件有顺序，必须先当前指针的下一个node不为空
+          cur = pre.next  
+          post = pre.next.next
+          
+          # 进行链表调换，需要定义两个临时变量
+          
+          pre.next = post
+          cur.next = post.next
+          post.next = cur
+          
+          # 注意重新连接链表时，一定保持链表的完整性，所以遵循的顺序必须先连接后改链！！！
+          
+          pre = pre.next.next  # 再将指针移动后两个位置，与链表的值无关，只和位置有关
+        
+        return dummy_head.next  # 返回新链表的头节点
+  ```
+  参考文档链接：https://programmercarl.com/0024.%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9.html
+
+  参考视频：https://www.bilibili.com/video/BV1YT411g7br
+* [leetcode19](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)删除链表的倒数第N个节点:关键点在于 1.如何找到倒数第n个元素，<font color = "orange">定义快慢指针
+  让快指针先行n步，后快慢指针一起移动，快指针直到最后一个Node时，慢指针正好指向倒数第n个位置 </font><font color = "LightPink">2. 同时要删除Node一定要找删除Node的前一个Node</font> </font><font color = "LightBlue">3.
+  要删除倒数第n个节点，要找到倒数第n+1个节点，遍历n次后，快指针要再移动一次</font>
+  
+  参考移动过程：![img_4.png](img_4.png)
+  ```
+  # Definition for singly-linked list.
+  # class ListNode:
+  #     def __init__(self, val=0, next=None):
+  #         self.val = val
+  #         self.next = next
+  class Solution:
+      def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy_head = ListNode(next=head)
+        fast, slow = dummy_head, dummy_head
+        while n > 0 and fast:  # 快指针领先慢指针n个位置
+          fast = fast.next
+          n -= 1
+        
+        fast = fast.next  # 快指针领先慢指针n+1个位置，当快指针指向None时循环停止，慢指针正好指向倒数第n+1个节点
+        
+        while fast:
+          fast = fast.next
+          slow = slow.next
+        
+        slow.next = slow.next.next
+        return dummy_head
+  ```
+  参考文档资料：https://programmercarl.com/%E9%9D%A2%E8%AF%95%E9%A2%9802.07.%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4.html
+  
+  参考视频：https://www.bilibili.com/video/BV1vW4y1U7Gf
+* [leetcode160](https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/)链表相交：关键点在于让两个列表的指针同步，先遍历确定两个列表长度，
+  后使长的链表指针移动到短列表同步位置，后面同步进行更新
+    
+  参考过程：![img_5.png](img_5.png)
+    ```
+    class Solution1:
+        def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+            lenA, lenB = 0, 0
+            cur = headA
+            while cur:  # 求链表A的长度
+                cur = cur.next
+                lenA += 1
+            cur = headB
+            while cur:  # 求链表B的长度
+                cur = cur.next
+                lenB += 1
+            curA, curB = headA, headB
+            if lenA > lenB:  # 让curB为最长链表的头，lenB为其长度
+                curA, curB = curB, curA
+                lenA, lenB = lenB, lenA
+            for _ in range(lenB - lenA):  # 让curA和curB在同一起点上（末尾位置对齐）
+                curB = curB.next
+            while curA:  # 遍历curA 和 curB，遇到相同则直接返回
+                if curA == curB:
+                    return curA
+                else:
+                    curA = curA.next
+                    curB = curB.next
+            return None
+    ```
+* [leetcode142](https://leetcode.cn/problems/linked-list-cycle-ii/)环形链表Ⅱ关键点在于：如何判断是否有环及环的入口位置
+    * 如何判断有环 
+     
+      定义快慢指针，让快指针始终比慢指针快一个位置，如果无环，那么快慢指针永不会相遇；如果有环，终在环中快慢指针会相遇，同时一定会在慢指针绕环的一圈就相遇，因为快指针与慢指针的位置差距最大就是
+      环长度(而相差一个环长度，两者在环入口相遇)
+    * 确定环的入口
+      数学推导参考：参考文档链接
+
+      <font color="LightPink">推导后发现环中相遇的位置与环入口距离和头与环入口距离相同</font>
+
+  参考动画：https://code-thinking.cdn.bcebos.com/gifs/141.%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8.gif
+  ```
+  # Definition for singly-linked list.
+  # class ListNode:
+  #     def __init__(self, x):
+  #         self.val = x
+  #         self.next = None
+  
+  class Solution:
+      def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        fast, slow = head, head  # 定义快慢指针初始位置
+        while fast and fast.next:  # 由于快指针一次移动两个位置，要保证fast和fast.next不为None
+          fast = fast.next.next  # 快指针一次移动两个位置
+          slow = slow.next   # 慢指针一次移动一个位置
+          if fast == slow:
+            index1 = fast
+            index2 = head
+            while index1 != index2:  # 相遇时，让相遇指针与头指针移动，相遇点即为环入口
+              index1 = index1.next
+              index2 = index2.next
+            return index1
+        return  None
+  ```
+  参考文档资料：https://programmercarl.com/0142.%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II.html
+
+  参考视频：https://www.bilibili.com/video/BV1if4y1d7ob
+# 链表总结
+1.虚拟头节点法可以将头节点异常的情况合并，具有一定的泛化性
+
+2.链表的基础知识与操作参考[leetcode707](https://leetcode.cn/problems/design-linked-list/)
+
+3.链表操作基本都运用双指针操作，<font color ="LightBlue">双指针操作思想很重要！！</font>
+
+4.<font color ="LightPink">对链表结点的操作一定要找到该节点的前一个节点

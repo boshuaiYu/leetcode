@@ -10,7 +10,7 @@ Q
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 R
 "链表/设计链表/leetcode707.py,9\b\9b38ab0d8e2fcb419c96d467f23a5c28e22fb2dd
-@
-数组/README.md,b\8\b8fcb0613b1e4558e822f27a6b085f0db8f20a82
 X
 (链表/移除链表元素/leetcode203.py,3\9\39e2c28bde5abb793a4599c57298bf06c130b901
+R
+"链表/翻转链表/leetcode206.py,a\d\ad8a65e7f35bd1c330748da41dc5e73c70e1baf3
