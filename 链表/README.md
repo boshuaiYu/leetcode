@@ -14,6 +14,7 @@ class ListNode:
         self.val = val
         self.next = next
 ```
+---
 ## Day 3
 * [leetcode707](https://leetcode.cn/problems/design-linked-list/)设计链表：包含了链表的5个操作
 
@@ -280,6 +281,7 @@ class ListNode:
   参考文档资料：https://programmercarl.com/0142.%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II.html
 
   参考视频：https://www.bilibili.com/video/BV1if4y1d7ob
+---
 # 链表总结
 1.虚拟头节点法可以将头节点异常的情况合并，具有一定的泛化性
 

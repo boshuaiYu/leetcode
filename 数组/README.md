@@ -3,6 +3,8 @@
 注意点：数组下标都是从0开始的；数组内存空间的地址是连续的。
 
 因为数组的在内存空间的地址是连续的，所以我们在删除或者增添元素的时候，就难免要移动其他元素的地址，因此数组的元素是不能删的，只能覆盖
+
+---
 ## Day1
  * [leetcode704](https://leetcode.cn/problems/binary-search/)二分法：给定一个<font color ="orange">有序数组</font>,同时一般数组无重复元素，一旦出现重复数组，可能返回的下标并不唯一可参考[leetcode34](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
 
@@ -150,6 +152,7 @@
     参考文档资料：https://programmercarl.com/0059.%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II.html
 
     参考视频资料：https://www.bilibili.com/video/BV1SL4y1N7mV/
+---
 # 数组总结
 1. 数组是存放在连续内存空间上的相同类型数据的集合(与后面的链表不同)
 2. 因为数组的在内存空间的地址是连续的，所以我们在删除或者增添元素的时候，就难免要移动其他元素的地址，而且数组的元素是不能删的，只能覆盖
