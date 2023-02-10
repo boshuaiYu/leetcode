@@ -243,6 +243,7 @@ class ListNode:
                     curB = curB.next
             return None
     ```
+    参考文档资料：https://programmercarl.com/%E9%9D%A2%E8%AF%95%E9%A2%9802.07.%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4.html
 * [leetcode142](https://leetcode.cn/problems/linked-list-cycle-ii/)环形链表Ⅱ关键点在于：如何判断是否有环及环的入口位置
     * 如何判断有环 
      
