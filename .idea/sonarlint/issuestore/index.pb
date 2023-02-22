@@ -5,9 +5,6 @@ Q
 !数组/螺旋矩阵/leetcode59.py,d\7\d7ae4c7345881177163ffdbfc41391da769ea38a
 ^
 .数组/长度最小的子数组/leetcode209.py,f\5\f544c52947246f222b479db2719466fbd85c1732
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 R
 "链表/设计链表/leetcode707.py,9\b\9b38ab0d8e2fcb419c96d467f23a5c28e22fb2dd
 X
@@ -24,7 +21,8 @@ g
 7链表/删除链表的倒数第N个节点/leetcode19.py,7\8\78b1176646a1ecc3d7bc3aa296ae0aec5ab08a02
 @
 链表/README.md,c\7\c74a1a810d598e99dc01b730ea39e87d0529f08a
-M
-.idea/leetcode/statistics.xml,9\9\99c41393072353482c698dd2a80c1f2319585a58
-I
-.idea/leetcode/editor.xml,4\e\4e1d1083192753a7663628e0017ffffe55ae10ed
+@
+数组/README.md,b\8\b8fcb0613b1e4558e822f27a6b085f0db8f20a82
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
